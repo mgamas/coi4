@@ -4,6 +4,8 @@ namespace App\Helpers;
 
 use App\Libraries\Drive;
 
+use Config\Services;
+
 if (!function_exists('elemento'))
 {
 	function elemento($dato, $indice, $valor=false) 
@@ -179,26 +181,25 @@ if (!function_exists('eliminaAcento'))
     }
 }
 
+
 if (!function_exists('script_tag')) {
-	function script_tag($src, $print=false)
-	{
-		if ($print) {
-			$link = "<script type='text/javascript'>\n" . file_get_contents(base_url($src)) . "\n</script>\n";
-		} else {
-			$CI =& get_instance();
-			$link = '<script type="text/javascript" ';
-			if (preg_match('#^([a-z]+:)?//#i', $src)) {
-				$link .= 'src="'.$src.'" ';
-			}
-			else {
-				$link .= 'src="'.$CI->config->slash_item('base_url').$src.'" ';
-			}
-			
-			$link .= "></script>\n";
-		}
-		return $link;
-	}
+    function script_tag($src, $print=false)
+    {
+        if ($print) {
+            $link = "<script type='text/javascript'>\n" . file_get_contents(base_url($src)) . "\n</script>\n";
+        } else {
+            $link = '<script type="text/javascript" ';
+            if (preg_match('#^([a-z]+:)?//#i', $src)) {
+                $link .= 'src="'.$src.'" ';
+            } else {
+                $link .= 'src="'.base_url($src).'" ';
+            }
+            $link .= "></script>\n";
+        }
+        return $link;
+    }
 }
+
 
 if (!function_exists('censurar_mail')) {
 	function censurar_mail($mail='')
