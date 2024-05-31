@@ -20,7 +20,6 @@ if (!function_exists('dato_requerido')) {
                 break;
             default:
                 return false;
-                break;
         }
 
         return validar_requerido($datos, $obligatorios);

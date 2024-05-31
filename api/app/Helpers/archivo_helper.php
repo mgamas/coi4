@@ -19,7 +19,7 @@ if (!function_exists('subirArchivo'))
 				$datos['carpeta'] = 'varios';
 			}
 
-			$archivo->set_subcarpeta($datos['carpeta']);
+			$archivo->setSubcarpeta($datos['carpeta']);
 
 			$fileId = $archivo->subirArchivo([
 				'name' => $datos['name'],
