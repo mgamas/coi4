@@ -3,7 +3,7 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class GeneralModel extends Model {
+class General_model extends Model {
     protected $table = "";
     protected $primaryKey = "id";
     protected $pk = null;
