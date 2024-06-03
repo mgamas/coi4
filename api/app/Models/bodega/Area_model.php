@@ -4,7 +4,7 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class AreaModel extends Model
+class Area_Model extends General_model
 {
     protected $table = 'bodega_area';
     protected $primaryKey = 'id';
@@ -22,12 +22,7 @@ class AreaModel extends Model
         }
     }
 
-    public function cargar($id)
-    {
-        return $this->find($id);
-    }
-
-    public function buscar($args = [])
+    public function _buscar($args = [])
     {
         $builder = $this->db->table($this->table . ' a')
             ->select("a.*, b.nombre as nombre_bodega")

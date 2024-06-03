@@ -11,7 +11,7 @@ class Token
     private $secret_key = 'favi';
     private $encrypt = 'HS256';
 
-    public function setToken($data = [])
+    public function set_token($data = [])
     {
         $config = [
             'iat'  => time(),
@@ -22,7 +22,7 @@ class Token
         return JWT::encode($config, $this->secret_key, $this->encrypt);
     }
 
-    public function isValidToken($token)
+    public function token_valido($token)
     {
         if (is_string($token) && !empty($token)) {
             try {
@@ -36,7 +36,7 @@ class Token
         return false;
     }   
     
-    public function getDataFromToken($token)
+    public function get_data_token($token)
     {
         $tmp = JWT::decode($token, new Key($this->secret_key, $this->encrypt));
         return $tmp->data;

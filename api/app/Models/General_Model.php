@@ -1,6 +1,5 @@
 <?php
 namespace App\Models;
-
 use CodeIgniter\Model;
 
 class General_model extends Model {

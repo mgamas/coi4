@@ -30,7 +30,7 @@ class Drive
         return $client;
     }
 
-    public function setSubcarpeta($nombre)
+    public function set_subcarpeta($nombre)
     {
         $this->subcarpeta = $nombre;
     }
