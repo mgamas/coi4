@@ -23,6 +23,7 @@ class Session extends BaseConfig
      */
     public string $driver = FileHandler::class;
 
+
     /**
      * --------------------------------------------------------------------------
      * Session Cookie Name

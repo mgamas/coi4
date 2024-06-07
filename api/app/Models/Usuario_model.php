@@ -2,7 +2,7 @@
 use function App\Helpers\verConsulta;
 use CodeIgniter\Model;
 
-class Usuario_model extends General_model {
+class usuario_model extends General_model {
 
     protected $table = 'usuario';
     protected $primaryKey = 'id';
@@ -25,6 +25,10 @@ class Usuario_model extends General_model {
     public $fecha_clave_vence = null;
     public $fecha_anulado = null;
     public $activo = 1;
+    public $empresa_id;
+    public $empresa;
+    public $sucursal_id;
+    public $sucursal;
 
     public function __construct($id = null)
     {
@@ -36,10 +40,28 @@ class Usuario_model extends General_model {
 
     public function login($args = [])
     {
-        $clave = $args['clave'];
+        foreach($args as $key => $value)
+        {
+         if ($key == 'usuario') {
+            $usuario = strval($value);
+         }
+         if ($key == 'clave') {
+            $clave = strval($value);
+         }
+        }
+       
+        log_message('info', 'tabla seteada login '. $this->table);
+        log_message('info', 'db seteada login '. $this->db->getDatabase());
+        log_message('info',  str_replace('Usuario: ','',$usuario));
+        log_message('info',  $clave);
+        log_message('info',  md5('123'));
+        log_message('info',  md5(str_replace('Clave: ','',$clave)));
+        //$this->table = 'usuario';
+       
+        
 
-        $tmp = $this->where('usuario', $args['usuario'])
-                    ->where('clave', md5($clave))
+        $tmp = $this->where('usuario', str_replace('Usuario: ','',$usuario))
+                    ->where('clave', md5(str_replace('Clave: ','',$clave)))
                     ->where('activo', 1)
                     ->first();
 

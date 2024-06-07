@@ -23,7 +23,7 @@ class Database extends Config
      * @var string
      */
     public $defaultGroup = 'default';
-
+    public $query_builder = TRUE;
     /**
      * The default database connection.
      *

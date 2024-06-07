@@ -34,20 +34,20 @@ if (!function_exists('verPropiedad'))
 	}
 }
 
-if (!function_exists('verConsulta'))
-{
-	function verConsulta($datos, $args)
-	{
-		if ($datos->num_rows() > 0) {
-			if (isset($args['uno'])) {
-				return $datos->row();
-			} else {
-				return $datos->result();
-			}
-		}
+if (!function_exists('verConsulta')) {
+    function verConsulta($datos, $args) {
+        $result = $datos->getResult();
+        
+        if (count($result) > 0) {
+            if (isset($args['uno'])) {
+                return $result[0]; // Return the first row
+            } else {
+                return $result; // Return all results
+            }
+        }
 
-		return [];
-	}
+        return [];
+    }
 }
 
 if (!function_exists('var_session'))

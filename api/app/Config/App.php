@@ -6,6 +6,8 @@ use CodeIgniter\Config\BaseConfig;
 
 class App extends BaseConfig
 {
+    
+    
     /*
     |--------------------------------------------------------------------------
     | Base Site URL
@@ -22,7 +24,7 @@ class App extends BaseConfig
     | environments.
     |
     */
-    public $baseURL = 'http://localhost/favi/';
+    public $baseURL = 'http://localhost/';
 
     /*
     |--------------------------------------------------------------------------
@@ -124,7 +126,7 @@ class App extends BaseConfig
     | of the client.
     |
     */
-    public $proxyIPs = '';
+    public array $proxyIPs = [];
 
     /*
     |--------------------------------------------------------------------------
@@ -174,7 +176,7 @@ class App extends BaseConfig
     | 9 = All Messages
     |
     */
-    public $logThreshold = [1];
+    public $logThreshold = [9];
 
     /*
     |--------------------------------------------------------------------------

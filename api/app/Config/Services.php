@@ -1,8 +1,11 @@
 <?php
 
 namespace Config;
-
+use CodeIgniter\Session\Handlers\FileHandler;
 use CodeIgniter\Config\BaseService;
+use CodeIgniter\Session\Session;
+use CodeIgniter\HTTP\IncomingRequest;
+use Config\Session as SessionConfig;
 
 /**
  * Services Configuration file.
@@ -29,4 +32,30 @@ class Services extends BaseService
      *     return new \CodeIgniter\Example();
      * }
      */
+
+     
+        /*public static function session(APP $config = null,  $getShared = false)
+    {
+         log_message('info', 'init load sesion');
+        if ($getShared) {
+            return static::getSharedInstance('session', $config);
+        }
+        log_message('info', 'after if load sesion');
+       
+        $config = $config ?? config(App::class);
+        
+        $sessionConfig = config(SessionConfig::class);
+        log_message('debug', 'Session config: ' . print_r($sessionConfig, true));
+        
+        $request = static::request();
+        
+        $ipAddress = $request->getIPAddress();
+      
+        
+        log_message('debug', 'IP Address: ' . $ipAddress);
+         
+        $handler = new FileHandler($sessionConfig, $ipAddress);
+
+        return new Session($handler, $sessionConfig); 
+    }*/
 }

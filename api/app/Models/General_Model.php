@@ -9,12 +9,16 @@ class General_model extends Model {
     protected $codigo = "";  // Agregar la propiedad codigo
     protected $mensaje = "";
     protected $foreignKey;
-    protected $usr;
+    protected $usr = [];
 
     public function __construct() {
         parent::__construct();
-        $this->table = $this->getTabla();
-        $this->usr = session()->get('usuario');
+        //$this->table = $this->getTabla();
+        log_message('info', 'tabla seteada '. $this->table);
+        //$this->usr    = $this->session->userdata('usuario');
+        //$session = \Config\Services::session();
+        $session = \Config\Services::session();
+        $this->usr = $session->get('usuario');
     }
 
     public function limpiarGeneral() {

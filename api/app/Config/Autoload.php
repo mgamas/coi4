@@ -94,7 +94,7 @@ class Autoload extends AutoloadConfig
 
     public $libraries = [
         'database',
-        'session',
+        'Session',
         'drive/Drive'
     ];
 
