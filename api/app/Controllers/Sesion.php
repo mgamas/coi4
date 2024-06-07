@@ -11,7 +11,7 @@ use App\Models;
 use function App\Helpers\var_session;
 use App\Libraries\Token;
 
-class Sesion extends BaseController
+class Sesion extends ResourceController
 {
     protected $usuario_model;
     protected $empresa_model;
@@ -21,7 +21,6 @@ class Sesion extends BaseController
 
     public function __construct()
     {
-        
         helper(['array', 'log']);
         $this->usuario_model = new usuario_model();
         $this->empresa_model = new Empresa_model();

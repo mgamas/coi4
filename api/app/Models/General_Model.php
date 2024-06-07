@@ -87,45 +87,66 @@ class General_model extends Model {
         $this->setDatos($tmp);
     }
 
-    private function getDatos() {
-        $tmp = [];
+    private function getDatos(): object
+    {
+    $tmp = new \stdClass();
 
-        foreach (get_object_vars($this) as $key => $value) {
-            if (property_exists($this, $key)) {
-                try {
-                    $tmp[$key] = $this->$key;
-                } catch (\Exception $e) {
-                    // Handle exception
+    foreach (get_object_vars($this) as $key => $value) {
+        if (property_exists($this, $key)) {
+            try {
+                $rp = new \ReflectionProperty($this, $key);
+
+                if ($rp->isPublic()) {
+                    if (is_object($this->{$key})) {
+                        $obj = $this->{$key};
+                        $tmp->{$obj->getForanea()} = $obj->getPK();
+                    } else {
+                        $tmp->{$key} = $value;
+                    }
                 }
+            } catch (\Throwable $th) {
+                // Manejo de errores si es necesario
             }
         }
-
-        return $tmp;
     }
 
-    public function guardar() {
-        if (is_null($this->pk)) {
-            if ($this->db->table($this->table)->insert($this)) {
-                $this->setPK($this->db->insertID());
-                return true;
-            } else {
-                $this->setMensaje("No pude guardar los datos, por favor intente nuevamente.");
-            }
+    return $tmp; // Devolver el objeto
+    }
+
+
+
+
+    public function guardar($args = [])
+    {
+    $this->setDatos($args);
+
+    if ($this->_pk === null) {
+        if (property_exists($this, 'usuario_id') && empty($this->usuario_id)) {
+            $this->usuario_id = $this->usr['id'];
+        }
+
+        if ($this->insert($this->getDatos())) {
+            $this->cargar($this->insertID());
+            return true;
         } else {
-            $this->db->table($this->table)
-                ->where($this->primaryKey, $this->pk)
-                ->update($this);
-
-            if ($this->db->affectedRows() == 0) {
-                $this->setMensaje("Nada que actualizar");
-            } else {
-                $this->cargar($this->pk);
-                return true;
-            }
+            $this->setMensaje("No pude guardar los datos, por favor intente nuevamente.");
         }
+    } else {
+        $this->where($this->primaryKey, $this->pk)
+             ->set($this->getDatos())
+             ->update();
 
-        return false;
+        if ($this->db->affectedRows() == 0) {
+            $this->setMensaje("Nada que actualizar");
+        } else {
+            $this->cargar($this->_pk);
+            return true;
+        }
     }
+
+    return false;
+    }
+
 
     public function buscar($args = []) {
         $builder = $this->db->table($this->table);

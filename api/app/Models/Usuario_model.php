@@ -79,14 +79,14 @@ class usuario_model extends General_model {
             $this->where('id', $args['id']);
         }
 
-        $tmp = $this->select('a.*')
+        $tmp = $this->select('*')
                     // ->join('rol_usuario b', 'b.usuario_id = a.id', 'left')
                     // ->join('rol c', 'c.id = b.rol_id', 'left')
                     // ->join('usuario_sucursal d', 'd.usuario_id = a.id', 'left')
                     // ->join('sucursal e', 'e.id = d.sucursal_id', 'left')
                     // ->where('b.activo', 1)
-                    ->where('a.activo', 1)
-                    ->findAll();
+                    ->where('activo', 1)
+                    ->get();
 
         return verConsulta($tmp, $args);
     }
