@@ -27,3 +27,15 @@ $routes->group('menu', ['namespace' => 'App\Controllers'], function($routes) {
     $routes->get('index', 'Menu::index');
     $routes->get('buscar', 'Menu::buscar');
 });
+
+$routes->get('catalogo', 'Catalogo::index');
+$routes->get('catalogo/ver_lista', 'Catalogo::ver_lista');
+
+$routes->group('recepcion', function($routes) {
+    $routes->get('principal', 'Principal::index');
+    $routes->get('principal/buscar', 'recepcion\Principal::buscar');
+    $routes->get('principal/get_datos', 'recepcion\Principal::get_datos');
+    $routes->post('principal/guardar/(:segment)', 'recepcion\Principal::guardar/$1');
+    $routes->post('principal/guardar', 'recepcion\Principal::guardar');
+    $routes->post('principal/recibir', 'recepcion\Principal::recibir');
+});

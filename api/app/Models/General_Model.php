@@ -120,7 +120,7 @@ class General_model extends Model {
     {
     $this->setDatos($args);
 
-    if ($this->_pk === null) {
+    if ($this->pk === null) {
         if (property_exists($this, 'usuario_id') && empty($this->usuario_id)) {
             $this->usuario_id = $this->usr['id'];
         }

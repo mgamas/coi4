@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\stock;
 
+use App\Models\General_model;
 use CodeIgniter\Model;
 
 class Stock_model extends General_model

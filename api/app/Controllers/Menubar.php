@@ -5,8 +5,9 @@ namespace App\Controllers;
 use App\Models\Menubar_model;
 use CodeIgniter\API\ResponseTrait;
 use CodeIgniter\Controller;
+use CodeIgniter\RESTful\ResourceController;
 
-class Menubar extends Controller
+class Menubar extends ResourceController
 {
     use ResponseTrait;
 
