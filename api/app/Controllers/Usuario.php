@@ -40,9 +40,9 @@ class Usuario extends ResourceController
         $data = ['exito' => 0];
 
         if ($this->request->getMethod() === 'POST') {
-            $datos = (object) $this->request->getPost();
+            $datos = (object) $this->request->getJSON();
 
-            log_message('info',''.var_dump($datos));
+            log_message('info','valores de datos guardar usuario'.var_dump((array)$datos));
 
             if (verPropiedad($datos, 'nombre') && 
                 verPropiedad($datos, 'apellido') && 
@@ -51,7 +51,7 @@ class Usuario extends ResourceController
 
                 $us = new Usuario_model($id);
 
-                if ($us->existe($datos)) {
+                if ($us->existe((array)$datos)) {
                     $data['mensaje'] = "Ya existe el usuario que intenta guardar.";
                 } else {
                     $datos->clave = md5($datos->clave);

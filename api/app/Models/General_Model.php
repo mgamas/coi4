@@ -66,7 +66,7 @@ class General_model extends Model {
         foreach ($args as $campo => $valor) {
             if (property_exists($this, $campo)) {
                 if (is_object($this->{$campo})) {
-                    $this->{$campo}->setPK($valor);
+                    $this->{$campo}->$this->setPK($valor);
                 } else {
                     $this->$campo = $valor;
                 }

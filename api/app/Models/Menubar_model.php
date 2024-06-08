@@ -7,33 +7,41 @@ use function App\Helpers\elemento;
 
 class Menubar_model extends General_model {
 
+    protected $table = 'menu_modulo';
+    protected $primaryKey = 'id';
+    protected $returnType = 'array';
+    protected $allowedFields = [
+        'nombre', 'icono', 'url', 'activo', 'modulo_id'
+    ];
+
     public function buscar($args = [])
     {
-        $menuItems =  [];
+        $menuItems = [];
 
-        if (elemento($args, 'usuario_id')) {
+        if (isset($args['usuario_id'])) {
             $this->where('ru.usuario_id', $args['usuario_id']);
         }
 
-        $tmp = $this->select("m.*")
-                    ->join("menu_rol mr", "mr.menu_id = m.id", "inner")
-                    ->join("rol r", "r.id = mr.rol_id", "inner")
-                    ->join("rol_usuario ru", "ru.rol_id = r.id", "inner")
-                    ->where("m.activo", 1)
-                    ->where("mr.activo", 1)
-                    ->where("ru.usuario_id", 1)
-                    ->get("menu m");
+        $tmp = $this->db->table('menu_modulo m')
+            ->select('m.*')
+            ->join('menu_rol mr', 'mr.menu_modulo_id = m.id', 'inner')
+            ->join('rol r', 'r.id = mr.rol_id', 'inner')
+            ->join('rol_usuario ru', 'ru.rol_id = r.id', 'inner')
+            ->where('m.activo', 1)
+            ->where('mr.activo', 1)
+            ->where('ru.usuario_id', $args['usuario_id'] ?? 1)
+            ->get();
 
         $result = $tmp->getResult();
 
         foreach ($result as $fila) {
             $items = [
                 "id" => $fila->id,
-                "url" => $fila->ruta,
+                "url" => $fila->url,
                 "icon" => !empty($fila->icono) ? $fila->icono : 'fa fa-home',
-                "text" => $fila->titulo,
-                "level" => $fila->nivel,
-                "father" => $fila->padre
+                "text" => $fila->nombre,
+               // "level" => $fila->nivel,
+               // "father" => $fila->padre
             ];
 
             array_push($menuItems, $items);

@@ -19,3 +19,6 @@ $routes->group('usuario', function($routes) {
     $routes->post('guardar', 'Usuario::guardar');
     $routes->post('anular_usuario/(:num)', 'Usuario::anular_usuario/$1');
 });
+
+$routes->get('menubar', 'Menubar::index');
+$routes->get('menubar/buscar', 'Menubar::buscar');
