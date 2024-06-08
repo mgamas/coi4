@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\mnt;
 
+use App\Models\General_model;
 use CodeIgniter\Model;
 use function App\Helpers\elemento;
 use function App\Helpers\verConsulta;
@@ -43,8 +44,8 @@ class Menu_model extends General_model {
             $this->where("mr.activo", "1");
         }
 
-        $this->where("activo", 1);
-        $tmp = $this->findAll();
+        $tmp =$this->where("activo", 1)->get();
+        //$tmp = $this->findAll();
 
         return verConsulta($tmp, $args);
     }

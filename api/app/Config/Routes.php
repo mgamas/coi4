@@ -22,3 +22,8 @@ $routes->group('usuario', function($routes) {
 
 $routes->get('menubar', 'Menubar::index');
 $routes->get('menubar/buscar', 'Menubar::buscar');
+
+$routes->group('menu', ['namespace' => 'App\Controllers'], function($routes) {
+    $routes->get('index', 'Menu::index');
+    $routes->get('buscar', 'Menu::buscar');
+});
