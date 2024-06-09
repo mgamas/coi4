@@ -1,6 +1,7 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\producto;
+use App\Models\General_model;
 use function App\Helpers\verConsulta;
 use CodeIgniter\Model;
 

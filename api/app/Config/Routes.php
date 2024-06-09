@@ -60,4 +60,12 @@ $routes->group('producto', ['namespace' => 'App\Controllers\producto'], function
     $routes->get('unidad_medida/buscar', 'Unidad_medida::buscar');
     $routes->post('unidad_medida/guardar/(:segment)', 'Unidad_medida::guardar/$1');
     $routes->post('unidad_medida/guardar', 'Unidad_medida::guardar');
+    $routes->get('tipo_producto', 'Tipo_producto::index');
+    $routes->get('tipo_producto/buscar', 'Tipo_producto::buscar');
+    $routes->post('tipo_producto/guardar/(:segment)', 'Tipo_producto::guardar/$1');
+    $routes->post('tipo_producto/guardar', 'Tipo_producto::guardar');
+    $routes->get('producto', 'Producto::index');
+    $routes->get('producto/buscar', 'Producto::buscar');
+    $routes->post('producto/guardar/(:segment)', 'Producto::guardar/$1');
+    $routes->post('producto/guardar', 'Producto::guardar');
 });

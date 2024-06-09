@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\producto;
 
-use CodeIgniter\Model;
+use App\Models\General_model;
 use function App\Helpers\elemento;
 use function App\Helpers\verConsulta;
 
@@ -35,7 +35,7 @@ class Tipo_producto_model extends General_model
             $this->where('activo', 1);
         }
 
-        $tmp = $this->findAll();
+        $tmp = $this->get();
 
         return verConsulta($tmp, $args);
     }
@@ -47,7 +47,7 @@ class Tipo_producto_model extends General_model
         }
 
         $this->where("nombre", $args['nombre']);
-        $tmp = $this->findAll();
+        $tmp = $this->get();
 
         if (count($tmp) > 0) {
             return true;
