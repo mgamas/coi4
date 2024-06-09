@@ -31,11 +31,33 @@ $routes->group('menu', ['namespace' => 'App\Controllers'], function($routes) {
 $routes->get('catalogo', 'Catalogo::index');
 $routes->get('catalogo/ver_lista', 'Catalogo::ver_lista');
 
-$routes->group('recepcion', function($routes) {
+
+$routes->group('recepcion', ['namespace' => 'App\Controllers\pedido'], function($routes) {
+    $routes->get('detalle', 'Detalle::index');
+    $routes->get('detalle/buscar', 'Detalle::buscar');
+    $routes->post('detalle/guardar/(:segment)', 'Detalle::guardar/$1');
+    $routes->post('detalle/guardar', 'Detalle::guardar');
+    $routes->delete('detalle/eliminar_producto/(:segment)', 'Detalle::eliminar_producto/$1');
+});
+
+$routes->group('recepcion', ['namespace' => 'App\Controllers\recepcion'], function($routes) {
+    $routes->get('detalle', 'Detalle::index');
+    $routes->get('detalle/buscar', 'Detalle::buscar');
+    $routes->post('detalle/guardar/(:segment)', 'Detalle::guardar/$1');
+    $routes->post('detalle/guardar', 'Detalle::guardar');
+    $routes->post('detalle/guardar_detalle', 'Detalle::guardar_detalle');
+    $routes->delete('detalle/eliminar_producto/(:segment)', 'Detalle::eliminar_producto/$1');
     $routes->get('principal', 'Principal::index');
-    $routes->get('principal/buscar', 'recepcion\Principal::buscar');
-    $routes->get('principal/get_datos', 'recepcion\Principal::get_datos');
-    $routes->post('principal/guardar/(:segment)', 'recepcion\Principal::guardar/$1');
-    $routes->post('principal/guardar', 'recepcion\Principal::guardar');
-    $routes->post('principal/recibir', 'recepcion\Principal::recibir');
+    $routes->get('principal/buscar', 'Principal::buscar');
+    $routes->get('principal/get_datos', 'Principal::get_datos');
+    $routes->post('principal/guardar/(:segment)', 'Principal::guardar/$1');
+    $routes->post('principal/guardar', 'Principal::guardar');
+    $routes->post('principal/recibir', 'Principal::recibir');
+});
+
+$routes->group('producto', ['namespace' => 'App\Controllers\producto'], function($routes) {
+    $routes->get('unidad_medida', 'Unidad_medida::index');
+    $routes->get('unidad_medida/buscar', 'Unidad_medida::buscar');
+    $routes->post('unidad_medida/guardar/(:segment)', 'Unidad_medida::guardar/$1');
+    $routes->post('unidad_medida/guardar', 'Unidad_medida::guardar');
 });
