@@ -68,4 +68,13 @@ $routes->group('producto', ['namespace' => 'App\Controllers\producto'], function
     $routes->get('producto/buscar', 'Producto::buscar');
     $routes->post('producto/guardar/(:segment)', 'Producto::guardar/$1');
     $routes->post('producto/guardar', 'Producto::guardar');
+    $routes->get('producto_sucursal/buscar/(:num)', 'Producto_sucursal::buscar/$1');
+    $routes->get('producto_sucursal/buscar', 'Producto_sucursal::buscar');
+    $routes->post('producto_sucursal/crear', 'Producto_sucursal::create');
+    $routes->put('producto_sucursal/actualizar/(:num)', 'Producto_sucursal::update/$1');
+    $routes->delete('producto_sucursal/eliminar/(:num)', 'Producto_sucursal::delete/$1');
+    //producto_bodega
+    $routes->post('producto_bodega/asignar/(:segment)', 'Producto_bodega::asignar_producto_bodega/$1');
+    $routes->post('producto_bodega/anular/(:segment)', 'Producto_bodega::anular_producto_bodega/$1');
+    $routes->get('producto_bodega/buscar', 'Producto_bodega::buscar');
 });

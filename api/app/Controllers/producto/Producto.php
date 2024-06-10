@@ -60,7 +60,7 @@ class Producto extends ResourceController
                         $data['mensaje'] = empty($id) ? "Registro guardado con éxito." : "Registro actualizado.";
                         $data['linea'] = $producto->buscar(['id' => $producto->getPK(), 'uno' => true]);
                     } else {
-                        $data['mensaje'] = $producto->getMensaje();
+                        $data['mensaje'] = "not implement"; //$producto->getMensaje();
                     }
                 }
             } else {
