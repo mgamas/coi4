@@ -3,7 +3,6 @@
 namespace App\Models\mnt;
 
 use App\Models\General_model;
-use CodeIgniter\Model;
 use function App\Helpers\elemento;
 use function App\Helpers\verConsulta;
 

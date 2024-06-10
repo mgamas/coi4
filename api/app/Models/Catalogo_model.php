@@ -486,7 +486,7 @@ class Catalogo_model extends General_model
 
     public function ver_cliente_tipo()
     {
-        $clienteTipoModel = new \App\Models\Cliente_tipo_model();
+        $clienteTipoModel = new \App\Models\mnt\Cliente_tipo_model();
         return $clienteTipoModel->buscar();
     }
 
@@ -768,13 +768,13 @@ class Catalogo_model extends General_model
 
     public function ver_productos()
     {
-        $productoModel = new \App\Models\Producto_model();
+        $productoModel = new \App\Models\producto\Producto_model();
         return $productoModel->buscar();
     }
 
     public function ver_ubicacion($args = [])
     {
-        $ubicacionModel = new \App\Models\Ubicacion_model();
+        $ubicacionModel = new \App\Models\bodega\Ubicacion_model();
         return $ubicacionModel->_buscar($args);
     }
 

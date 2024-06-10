@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\mnt;
 
-use CodeIgniter\Model;
+use App\Models\General_model;
 
 class Proveedor_bodega_model extends General_model {
 

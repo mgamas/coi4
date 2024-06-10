@@ -32,12 +32,17 @@ $routes->get('catalogo', 'Catalogo::index');
 $routes->get('catalogo/ver_lista', 'Catalogo::ver_lista');
 
 
-$routes->group('recepcion', ['namespace' => 'App\Controllers\pedido'], function($routes) {
+$routes->group('pedido', ['namespace' => 'App\Controllers\pedido'], function($routes) {
     $routes->get('detalle', 'Detalle::index');
     $routes->get('detalle/buscar', 'Detalle::buscar');
     $routes->post('detalle/guardar/(:segment)', 'Detalle::guardar/$1');
     $routes->post('detalle/guardar', 'Detalle::guardar');
     $routes->delete('detalle/eliminar_producto/(:segment)', 'Detalle::eliminar_producto/$1');
+    $routes->get('principal', 'Principal::index');
+    $routes->get('principal/buscar', 'Principal::buscar');
+    $routes->get('principal/get_datos', 'Principal::get_datos');
+    $routes->post('principal/guardar/(:any)', 'Principal::guardar/$1');
+    $routes->post('principal/guardar', 'Principal::guardar');
 });
 
 $routes->group('recepcion', ['namespace' => 'App\Controllers\recepcion'], function($routes) {
@@ -103,3 +108,36 @@ $routes->group('producto', ['namespace' => 'App\Controllers\producto'], function
     $routes->post('clasificacion/guardar/(:segment)', 'Clasificacion::guardar/$1');
     $routes->post('clasificacion/guardar', 'Clasificacion::guardar');
 });
+
+$routes->group('orden', ['namespace' => 'App\Controllers\orden'], function($routes) {
+    $routes->get('ordencompra', 'OrdenCompra::index');
+    $routes->get('ordencompra/buscar', 'OrdenCompra::buscar');
+    $routes->post('ordencompra/guardar/(:segment)', 'OrdenCompra::guardar/$1');
+    $routes->post('ordencompra/guardar', 'OrdenCompra::guardar');
+    $routes->get('ordencompradetalle', 'OrdenCompraDetalle::index');
+    $routes->get('ordencompradetalle/buscar', 'OrdenCompraDetalle::buscar');
+    $routes->get('ordencompradetalle/getLast', 'OrdenCompraDetalle::getLast');
+    $routes->post('ordencompradetalle/guardar/(:segment)', 'OrdenCompraDetalle::guardar/$1');
+    $routes->post('ordencompradetalle/guardar', 'OrdenCompraDetalle::guardar');
+    $routes->post('ordencompradetalle/eliminar_producto/(:segment)', 'OrdenCompraDetalle::eliminar_producto/$1');
+    $routes->post('ordencompradetalle/actualizar_linea/(:segment)', 'OrdenCompraDetalle::actualizar_linea/$1');
+});
+
+$routes->group('mnt', ['namespace' => 'App\Controllers\mnt'], function($routes) {
+    $routes->get('cliente_bodega', 'Cliente_bodega::index');
+    $routes->post('cliente_bodega/asignar_cliente_bodega/(:segment)', 'Cliente_bodega::asignar_cliente_bodega/$1');
+    $routes->post('cliente_bodega/anular_cliente_bodega/(:segment)', 'Cliente_bodega::anular_cliente_bodega/$1');
+    //cliente contacto
+    $routes->get('cliente_contacto', 'Cliente_contacto::index');
+    $routes->get('cliente_contacto/buscar', 'Cliente_contacto::buscar');
+    $routes->post('cliente_contacto/guardar/(:any)', 'Cliente_contacto::guardar/$1');
+    $routes->post('cliente_contacto/guardar', 'Cliente_contacto::guardar');
+    //cliente_direccion_rutas
+    $routes->get('cliente_direccion', 'Cliente_direccion::index');
+    $routes->get('cliente_direccion/buscar', 'Cliente_direccion::buscar');
+    $routes->post('cliente_direccion/guardar/(:segment)', 'Cliente_direccion::guardar/$1');
+    $routes->post('cliente_direccion/guardar', 'Cliente_direccion::guardar');
+    //nuevo
+});
+
+

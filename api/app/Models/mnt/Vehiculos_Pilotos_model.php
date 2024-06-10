@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\mnt;
 
+use App\Models\General_model;
 use CodeIgniter\Model;
 
 class Vehiculos_Pilotos_model extends General_model {

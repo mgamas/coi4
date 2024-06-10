@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\bodega;
 
-use CodeIgniter\Model;
+use App\Models\General_model;
 
 class Area_Model extends General_model
 {

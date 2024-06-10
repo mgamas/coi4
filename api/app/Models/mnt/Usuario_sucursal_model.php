@@ -4,7 +4,6 @@ namespace App\Models\mnt;
 use App\Models\General_model;
 use function App\Helpers\verConsulta;
 use function App\Helpers\elemento;
-use CodeIgniter\Model;
 
 class Usuario_sucursal_model extends General_model {
 
