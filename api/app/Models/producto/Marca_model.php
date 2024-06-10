@@ -38,7 +38,7 @@ class Marca_model extends General_model {
 			$this->where('activo', 1);
 		}
 
-		$tmp = $this->findAll();
+		$tmp = $this->get();
 		return verConsulta($tmp, $args);
 	}
 

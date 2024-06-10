@@ -77,4 +77,29 @@ $routes->group('producto', ['namespace' => 'App\Controllers\producto'], function
     $routes->post('producto_bodega/asignar/(:segment)', 'Producto_bodega::asignar_producto_bodega/$1');
     $routes->post('producto_bodega/anular/(:segment)', 'Producto_bodega::anular_producto_bodega/$1');
     $routes->get('producto_bodega/buscar', 'Producto_bodega::buscar');
+    //presentacion
+    $routes->get('presentacion', 'Presentacion::index');
+    $routes->get('presentacion/buscar', 'Presentacion::buscar');
+    $routes->post('presentacion/guardar/(:segment)', 'Presentacion::guardar/$1');
+    $routes->post('presentacion/guardar', 'Presentacion::guardar');
+    //marca
+    $routes->get('marca', 'Marca::index');
+    $routes->get('marca/buscar', 'Marca::buscar');
+    $routes->post('marca/guardar/(:segment)', 'Marca::guardar/$1');
+    $routes->post('marca/guardar', 'Marca::guardar');
+    //familia
+    $routes->get('familia', 'Familia::index');
+    $routes->get('familia/buscar', 'Familia::buscar');
+    $routes->post('familia/guardar/(:segment)', 'Familia::guardar/$1');
+    $routes->post('familia/guardar', 'Familia::guardar');
+    //estado
+    $routes->get('estado', 'Estado::index');
+    $routes->get('estado/buscar', 'Estado::buscar');
+    $routes->post('estado/guardar/(:segment)', 'Estado::guardar/$1');
+    $routes->post('estado/guardar', 'Estado::guardar');
+    //clasificacion
+    $routes->get('clasificacion', 'Clasificacion::index');
+    $routes->get('clasificacion/buscar', 'Clasificacion::buscar');
+    $routes->post('clasificacion/guardar/(:segment)', 'Clasificacion::guardar/$1');
+    $routes->post('clasificacion/guardar', 'Clasificacion::guardar');
 });
