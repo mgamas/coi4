@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\despacho;
 
-use CodeIgniter\Model;
+use App\Models\General_model;
 use function App\Helpers\elemento;
 use function App\Helpers\verConsulta;
 

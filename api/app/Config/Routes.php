@@ -140,4 +140,45 @@ $routes->group('mnt', ['namespace' => 'App\Controllers\mnt'], function($routes) 
     //nuevo
 });
 
+$routes->group('bodega', ['namespace' => 'App\Controllers\bodega'], function($routes) {
+    $routes->get('area', 'Area::index');
+    $routes->get('area/buscar', 'Area::buscar');
+    $routes->post('area/guardar/(:segment)', 'Area::guardar/$1');
+    $routes->post('area/guardar', 'Area::guardar');
+    //bodega
+    $routes->get('bodega/index', 'Bodega::index');
+    $routes->get('bodega/get_datos', 'Bodega::get_datos');
+    $routes->get('bodega/buscar', 'Bodega::buscar');
+    $routes->post('bodega/guardar/(:segment)', 'Bodega::guardar/$1');
+    $routes->post('bodega/guardar', 'Bodega::guardar');
+    //sector
+    $routes->get('sector/index', 'Sector::index');
+    $routes->get('sector/buscar', 'Sector::buscar');
+    $routes->post('sector/guardar/(:segment)', 'Sector::guardar/$1');
+    $routes->post('sector/guardar', 'Sector::guardar');
+    //tramo
+    $routes->get('tramo/index', 'Tramo::index');
+    $routes->get('tramo/buscar', 'Tramo::buscar');
+    $routes->post('tramo/guardar/(:segment)', 'Tramo::guardar/$1');
+    $routes->post('tramo/guardar', 'Tramo::guardar');
+    //ubicacion
+    $routes->get('ubicacion/index', 'Ubicacion::index');
+    $routes->get('ubicacion/buscar', 'Ubicacion::buscar');
+    $routes->post('ubicacion/guardar/(:segment)', 'Ubicacion::guardar/$1');
+    $routes->post('ubicacion/guardar', 'Ubicacion::guardar');
+});
+
+$routes->group('despacho', ['namespace' => 'App\Controllers\despacho'], function($routes) {
+    $routes->get('detalle', 'Detalle::index');
+    $routes->get('detalle/buscar', 'Detalle::buscar');
+    $routes->post('detalle/guardar/(:segment)', 'Detalle::guardar/$1');
+    $routes->post('detalle/guardar_detalle', 'Detalle::guardar_detalle');
+    $routes->delete('detalle/eliminar_producto/(:segment)', 'Detalle::eliminar_producto/$1');
+    //principal
+    $routes->get('principal', 'Principal::index');
+    $routes->get('principal/buscar', 'Principal::buscar');
+    $routes->get('principal/get_datos', 'Principal::get_datos');
+    $routes->post('principal/guardar/(:segment)', 'Principal::guardar/$1');
+    $routes->post('principal/despachar', 'Principal::despachar');
+});
 

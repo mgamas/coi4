@@ -39,6 +39,10 @@ class General_model extends Model {
         $this->codigo = $valor;
     }
 
+    /**
+     * Summary of getMensaje
+     * @return string
+     */
     public function getMensaje() {
         return $this->mensaje;
     }
