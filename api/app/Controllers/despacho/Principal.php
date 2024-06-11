@@ -37,6 +37,7 @@ class Principal extends ResourceController
         return $this->failNotFound();
     }
 
+
     public function buscar() 
     {
         $data = [

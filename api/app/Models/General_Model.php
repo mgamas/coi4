@@ -14,7 +14,7 @@ class General_model extends Model {
     public function __construct() {
         parent::__construct();
         //$this->table = $this->getTabla();
-        log_message('info', 'tabla seteada '. $this->table);
+        //log_message('info', 'tabla seteada '. $this->table);
         //$this->usr    = $this->session->userdata('usuario');
         //$session = \Config\Services::session();
         $session = \Config\Services::session();
