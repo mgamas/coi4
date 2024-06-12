@@ -38,15 +38,21 @@ class Proveedor_model extends General_model {
     public function buscar($args = [])
     {
         if (elemento($args, 'id')) {
-            $this->where('a.id', $args['id']);
+            $this->where('id', $args['id']);
         }
 
-        $tmp = $this->select('a.*, b.nombre as Empresa')
-                    ->join('empresa b', 'b.id = a.empresa_id')
-                    ->where('a.activo', 1)
-                    ->findAll();
+       /*  $tmp = $this->select('*, b.nombre as Empresa')
+                    ->join('empresa b', 'b.id = empresa_id')
+                    ->where('activo', 1)
+                    ->get(); */
+        
+        $builder = $this->db->table($this->table);
+        $builder->select('*, b.nombre as Empresa');
+        $builder->join('empresa b', 'b.id = empresa_id');
+        $builder->where('proveedor.activo', 1);
+        $query = $builder->get();
 
-        return verConsulta($tmp, $args);
+        return verConsulta($query, $args);
     }
 
     public function existe($args = [])

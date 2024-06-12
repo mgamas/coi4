@@ -47,21 +47,26 @@ class Cliente_model extends General_model {
 
     public function buscar($args = [])
     {
-        if (elemento($args, 'id')) {
-            $this->where('a.id', $args['id']);
+        $builder = $this->db->table('cliente a');
+    
+        if (isset($args['id'])) {
+            $builder->select('a.*')
+                    ->where('a.id', $args['id']);
         }
-
+    
         if (isset($args['activo'])) {
-            $this->where('a.activo', $args['activo']);
+            $builder->where('a.activo', $args['activo']);
         } else {
-            $this->where('a.activo', 1);
+            $builder->where('a.activo', 1);
         }
-
-        $query = $this->select('a.*, b.nombre as ncliente')
-                      ->join('cliente_tipo b', 'b.id = a.cliente_tipo_id')
-                      ->where('a.activo', 1)
-                      ->get();
-
+    
+        $builder->select('a.*, b.nombre as ncliente')
+                ->join('cliente_tipo b', 'b.id = a.cliente_tipo_id');
+    
+        $query = $builder->get();
+    
         return verConsulta($query, $args);
     }
+    
+
 }

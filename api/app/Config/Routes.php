@@ -137,7 +137,128 @@ $routes->group('mnt', ['namespace' => 'App\Controllers\mnt'], function($routes) 
     $routes->get('cliente_direccion/buscar', 'Cliente_direccion::buscar');
     $routes->post('cliente_direccion/guardar/(:segment)', 'Cliente_direccion::guardar/$1');
     $routes->post('cliente_direccion/guardar', 'Cliente_direccion::guardar');
-    //nuevo
+    //cliente_sucursal_rutas
+    $routes->get('cliente_sucursal', 'Cliente_sucursal::index');
+    $routes->post('cliente_sucursal/asignar_cliente_sucursal/(:any)', 'Cliente_sucursal::asignar_cliente_sucursal/$1');
+    $routes->post('cliente_sucursal/anular_cliente_sucursal/(:any)', 'Cliente_sucursal::anular_cliente_sucursal/$1');
+    $routes->get('cliente_sucursal/buscar', 'Cliente_sucursal::buscar');
+
+    //Cliente_tipo_rutas
+    $routes->get('cliente_tipo', 'Cliente_tipo::index');
+    $routes->get('cliente_tipo/buscar', 'Cliente_tipo::buscar');
+    $routes->post('cliente_tipo/guardar/(:any)', 'Cliente_tipo::guardar/$1');
+    $routes->get('cliente-tipo/buscar', 'Cliente_tipo::buscar');
+    //Clientes_rutas
+    $routes->get('cliente', 'cliente::index');
+    $routes->post('cliente/guardar/(:any)', 'cliente::guardar/$1');
+    $routes->post('cliente/anular_cliente/(:any)', 'cliente::anular_cliente/$1');
+    $routes->get('cliente/buscar', 'cliente::buscar');
+    //Empleado_sucursal
+    $routes->get('empleado_sucursal', 'Empleado_sucursal::index');
+    $routes->post('empleado_sucursal/asignar_empleado_sucursal/(:any)', 'Empleado_sucursal::asignar_empleado_sucursal/$1');
+    $routes->post('empleado_sucursal/anular_empleado_sucursal/(:any)', 'Empleado_sucursal::anular_empleado_sucursal/$1');
+    $routes->get('empleado_sucursal/buscar', 'Empleado_sucursal::buscar');
+    //Empleado
+    $routes->get('empleado', 'Empleado::index');
+    $routes->get('empleado/buscar', 'Empleado::buscar');
+    $routes->post('empleado/guardar/(:any)', 'Empleado::guardar/$1');
+    $routes->post('empleado/anular_empleado/(:any)', 'Empleado::anular_empleado/$1');
+    //Empresa
+    $routes->get('empresa', 'Empresa::index');
+    $routes->get('empresa/buscar', 'Empresa::buscar');
+    $routes->post('empresa/guardar/(:any)', 'Empresa::guardar/$1');
+    //Menu_rol
+    $routes->get('menu_rol', 'Menu_rol::index');
+    $routes->post('menu_rol/asignar_menu/(:any)', 'Menu_rol::asignar_menu/$1');
+    $routes->post('menu_rol/anular_menu_rol/(:any)', 'Menu_rol::anular_menu_rol/$1');
+    $routes->get('menu_rol/buscar', 'Menu_rol::buscar');
+
+    //Menu
+    $routes->get('menu', 'Menu::index');
+    $routes->get('menu/buscar', 'Menu::buscar');
+    $routes->get('menu/get_modulos', 'Menu::get_modulos');
+    $routes->get('menu/get_opciones', 'Menu::get_opciones');
+    $routes->post('menu/guardar/(:any)', 'Menu::guardar/$1');
+    $routes->post('menu/guardar_opcion/(:any)', 'Menu::guardar_opcion/$1');
+    $routes->post('menu/anular_modulo/(:any)', 'Menu::anular_modulo/$1');
+    $routes->post('menu/anular_opcion/(:any)', 'Menu::anular_opcion/$1');
+    //Modulo_rol
+    $routes->get('modulo_rol', 'Modulo_rol::index');
+    $routes->post('modulo_rol/asignar_modulo/(:any)', 'Modulo_rol::asignar_modulo/$1');
+    $routes->post('modulo_rol/anular_modulo_rol/(:any)', 'Modulo_rol::anular_modulo_rol/$1');
+    $routes->get('modulo_rol/buscar', 'Modulo_rol::buscar');
+
+    //Motivo_anulacion_pedido
+    $routes->get('motivo_anulacion_pedido', 'Motivo_anulacion_pedido::index');
+    $routes->get('motivo_anulacion_pedido/buscar', 'Motivo_anulacion_pedido::buscar');
+    $routes->post('motivo_anulacion_pedido/guardar/(:any)', 'Motivo_anulacion_pedido::guardar/$1');
+    //Motivo_devolucion
+    $routes->get('motivo_devolucion', 'Motivo_devolucion::index');
+    $routes->get('motivo_devolucion/buscar', 'Motivo_devolucion::buscar');
+    $routes->post('motivo_devolucion/guardar/(:any)', 'Motivo_devolucion::guardar/$1');
+    //pedido_tipo
+    $routes->get('pedido_tipo', 'Pedido_tipo::index');
+    $routes->get('pedido_tipo/buscar', 'Pedido_tipo::buscar');
+    $routes->post('pedido_tipo/guardar/(:any)', 'Pedido_tipo::guardar/$1');
+    //Pilotos
+    $routes->get('pilotos', 'Pilotos::index');
+    $routes->get('pilotos/buscar', 'Pilotos::buscar');
+    $routes->post('pilotos/guardar/(:any)', 'Pilotos::guardar/$1');
+    //Proveedores_bodega
+    $routes->get('proveedor_bodega', 'Proveedor_bodega::index');
+    $routes->post('proveedor_bodega/asignar_proveedor_bodega/(:any)', 'Proveedor_bodega::asignar_proveedor_bodega/$1');
+    $routes->post('proveedor_bodega/anular_proveedor_bodega/(:any)', 'Proveedor_bodega::anular_proveedor_bodega/$1');
+    $routes->get('proveedor_bodega/buscar', 'proveedor_bodega::buscar');
+    //Proveedores
+    $routes->get('proveedor', 'Proveedor::index');
+    $routes->get('proveedor/buscar', 'Proveedor::buscar');
+    $routes->post('proveedor/guardar/(:any)', 'Proveedor::guardar/$1');
+    //Rol_usuario
+    $routes->get('rol_usuario', 'Rol_usuario::index');
+    $routes->post('rol_usuario/asignar_rol/(:any)', 'Rol_usuario::asignar_rol/$1');
+    $routes->post('rol_usuario/anular_rol_usuario/(:any)', 'Rol_usuario::anular_rol_usuario/$1');
+    $routes->get('rol_usuario/buscar', 'rol_usuario::buscar');
+
+
+    //Rol
+    $routes->get('rol', 'Rol::index');
+    $routes->get('rol/buscar', 'Rol::buscar');
+    $routes->post('rol/guardar/(:any)', 'Rol::guardar/$1');
+    $routes->post('rol/anular_rol/(:any)', 'Rol::anular_rol/$1');
+    //Ruta
+    $routes->get('ruta', 'Ruta::index');
+    $routes->get('ruta/buscar', 'Ruta::buscar');
+    $routes->post('ruta/guardar/(:any)', 'Ruta::guardar/$1');
+    //Sucursal
+    $routes->get('sucursal', 'Sucursal::index');
+    $routes->get('sucursal/buscar', 'Sucursal::buscar');
+    $routes->post('sucursal/guardar/(:any)', 'Sucursal::guardar/$1');
+    //Tipo_transaccion
+    $routes->get('tipo_transaccion', 'Tipo_transaccion::index');
+    $routes->get('tipo_transaccion/buscar', 'Tipo_transaccion::buscar');
+    $routes->post('tipo_transaccion/guardar/(:any)', 'Tipo_transaccion::guardar/$1');
+    $routes->post('tipo_transaccion/guardar', 'Tipo_transaccion::guardar');
+    //Usuario_sucursal
+    $routes->get('usuario_sucursal', 'Usuario_sucursal::index');
+    $routes->post('usuario_sucursal/asignar_sucursal/(:any)', 'Usuario_sucursal::asignar_sucursal/$1');
+    $routes->post('usuario_sucursal/asignar_sucursal', 'Usuario_sucursal::asignar_sucursal');
+    $routes->post('usuario_sucursal/anular_sucursal/(:any)', 'Usuario_sucursal::anular_sucursal/$1');
+    $routes->get('usuario_sucursal/buscar', 'Usuario_sucursal::buscar');
+
+    //Vehiculos_pilotos
+    $routes->get('vehiculos_pilotos', 'Vehiculos_pilotos::index');
+    $routes->post('vehiculos_pilotos/asignar_vehiculos_pilotos/(:any)', 'Vehiculos_pilotos::asignar_Vehiculos_Pilotos/$1');
+    $routes->post('vehiculos_pilotos/asignar_vehiculos_pilotos', 'Vehiculos_pilotos::asignar_Vehiculos_Pilotos');
+    $routes->post('vehiculos_pilotos/anular_vehiculos_pilotos/(:any)', 'Vehiculos_pilotos::anular_vehiculos_pilotos/$1');
+    $routes->get('vehiculos_pilotos/buscar' , 'Vehiculos_pilotos::buscar');
+
+    //Vehiculos
+    $routes->get('vehiculos', 'Vehiculos::index');
+    $routes->get('vehiculos/buscar', 'Vehiculos::buscar');
+    $routes->post('vehiculos/guardar/(:any)', 'Vehiculos::guardar/$1');
+    $routes->post('vehiculos/guardar', 'Vehiculos::guardar');
+
+
 });
 
 $routes->group('bodega', ['namespace' => 'App\Controllers\bodega'], function($routes) {
