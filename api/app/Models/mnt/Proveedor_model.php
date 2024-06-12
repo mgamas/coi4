@@ -50,6 +50,10 @@ class Proveedor_model extends General_model {
         $builder->select('*, b.nombre as Empresa');
         $builder->join('empresa b', 'b.id = empresa_id');
         $builder->where('proveedor.activo', 1);
+        if (elemento($args, 'id')) {
+            $builder->where('id', $args['id']);
+        }
+
         $query = $builder->get();
 
         return verConsulta($query, $args);
