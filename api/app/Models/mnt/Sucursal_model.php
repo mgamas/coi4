@@ -43,7 +43,7 @@ class Sucursal_model extends General_model {
         $this->select('sucursal.*, empresa.nombre as nempresa')
              ->join('empresa', 'empresa.id = sucursal.empresa_id')
              ->where('sucursal.activo', 1);
-        $tmp = $this->findAll();
+        $tmp = $this->get();
 
         return verConsulta($tmp, $args);
     }

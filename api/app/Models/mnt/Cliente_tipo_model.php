@@ -26,10 +26,10 @@ class Cliente_tipo_model extends General_model {
     public function buscar($args = [])
     {
         if (elemento($args, 'id')) {
-            $this->where('a.id', $args['id']);
+            $this->where('id', $args['id']);
         }
 
-        $query = $this->select('a.*')
+        $query = $this->select('*')
                       ->where('activo', 1)
                       ->get();
 

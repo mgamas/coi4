@@ -29,7 +29,7 @@ class Motivo_devolucion_model extends General_model {
             $this->where('id', $args['id']);
         }
 
-        $tmp = $this->findAll();
+        $tmp = $this->get();
 
         return verConsulta($tmp, $args);
     }

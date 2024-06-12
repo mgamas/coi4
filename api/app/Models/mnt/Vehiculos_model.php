@@ -49,7 +49,7 @@ class Vehiculos_model extends General_model {
         if (elemento($args, 'id')) {
             $this->where('id', $args['id']);
         }
-        $tmp = $this->findAll();
+        $tmp = $this->get();
 
         return verConsulta($tmp, $args);
     }
