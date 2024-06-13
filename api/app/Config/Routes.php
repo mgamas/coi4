@@ -123,7 +123,7 @@ $routes->group('orden', ['namespace' => 'App\Controllers\orden'], function($rout
     $routes->post('ordencompradetalle/actualizar_linea/(:segment)', 'OrdenCompraDetalle::actualizar_linea/$1');
 });
 
-$routes->group('mnt', ['namespace' => 'App\Controllers\mnt'], function($routes) {
+$routes->group('app/mnt', ['namespace' => 'App\Controllers\mnt'], function($routes) {
     $routes->get('cliente_bodega', 'Cliente_bodega::index');
     $routes->post('cliente_bodega/asignar_cliente_bodega/(:segment)', 'Cliente_bodega::asignar_cliente_bodega/$1');
     $routes->post('cliente_bodega/anular_cliente_bodega/(:segment)', 'Cliente_bodega::anular_cliente_bodega/$1');
