@@ -31,9 +31,9 @@ class Database extends Config
      */
     public $default = [
         'DSN'      => '',
-        'hostname' => '146.190.138.108',
-        'username' => 'favi',
-        'password' => 'favi2023@',
+        'hostname' => 'LocalHost',
+        'username' => 'YourDataBase',
+        'password' => 'YourPassword',
         'database' => 'favi',
         'DBDriver' => 'MySQLi',
         'DBPrefix' => '',
