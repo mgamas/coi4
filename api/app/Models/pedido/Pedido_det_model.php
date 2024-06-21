@@ -4,11 +4,13 @@ namespace App\Models\pedido;
 
 use App\Models\General_model;
 use CodeIgniter\Model;
+use App\Helpers\verPropiedad;
+use App\Helpers\Hoy;
 use function App\Helpers\elemento;
 use function App\Helpers\verConsulta;
 
-class Pedido_det_model extends General_model {
-
+class Pedido_det_model extends General_model
+{
     protected $table = 'pedido_det';
     protected $primaryKey = 'id';
     protected $allowedFields = [
@@ -26,30 +28,17 @@ class Pedido_det_model extends General_model {
         'producto_bodega_id',
         'presentacion_producto_id',
         'unidad_medida_id',
-        'estado_producto_id'
+        'estado_producto_id',
+        'activo',
+        'lote',
+        'fecha_vence'
     ];
 
-    public $pedido_enc_id;
-    public $no_linea;
-    public $cantidad;
-    public $peso;
-    public $precio;
-    public $cantidad_despachada;
-    public $codigo_producto;
-    public $nombre_producto;
-    public $nombre_presentacion;
-    public $nombre_unidad_medida;
-    public $nombre_estado_producto;
-    public $producto_bodega_id;
-    public $presentacion_producto_id;
-    public $unidad_medida_id;
-    public $estado_producto_id;
-
-    public function __construct($id = '')
+    public function __construct($id = null)
     {
         parent::__construct();
-        $this->setTabla($this->table);
-        $this->setLlave($this->primaryKey);
+        $this->setTabla("pedido_det");
+        $this->setLlave("id");
 
         if (!empty($id)) {
             $this->cargar($id);
@@ -58,26 +47,18 @@ class Pedido_det_model extends General_model {
 
     public function existe($args = [])
     {
-        $db = \Config\Database::connect();
-
-        if ($this->getPK()) {
-            $db->table($this->table)->where('id <> ', $this->getPK());
-        }
-
-        $tmp = $db->table($this->table)
-            ->where("pedido_enc_id", $args->pedido_enc_id)
-            ->where("activo", 1)
+        $tmp = $this->db->table($this->table)
+            ->where("pedido_enc_id", $args['pedido_enc_id'])
+            ->where("id", $this->getPK())
             ->get();
 
         return $tmp->getNumRows() > 0;
     }
 
-    public function setNoLinea($args = [])
+    public function obtenerUltimaLinea($args = [])
     {
-        $db = \Config\Database::connect();
-
-        $tmp = $db->table($this->table)
-            ->select("count(*) + 1 as numero")
+        $tmp = $this->db->table($this->table)
+            ->select("MAX(no_linea) + 1 as numero")
             ->where("pedido_enc_id", $args['pedido'])
             ->get()
             ->getRow();
@@ -87,22 +68,65 @@ class Pedido_det_model extends General_model {
 
     public function _buscar($args = '')
     {
-        $db = \Config\Database::connect();
-
+        $builder = $this->db->table($this->table . ' a');
+        
         if (elemento($args, 'id')) {
-            $db->table($this->table)->where("a.id", $args['id']);
+            $builder->where("a.id", $args['id']);
         } else {
             if (elemento($args, 'pedido_enc_id')) {
-                $db->table($this->table)->where("a.pedido_enc_id", $args['pedido_enc_id']);
+                $builder->where("a.pedido_enc_id", $args['pedido_enc_id']);
             }
         }
 
-        $tmp = $db->table($this->table . ' a')
+        $tmp = $builder
             ->select("a.*")
+            ->where('a.activo', 1)
             ->orderBy("a.no_linea")
             ->get();
 
         return verConsulta($tmp, $args);
+    }
+
+    public function obtenerDetalleExistente($args = [])
+    {
+        $fecha_vence = isset($args['datos']->fecha_vence) && !empty($args['datos']->fecha_vence) 
+            ? (new \DateTime($args['datos']->fecha_vence))->format('Y-m-d H:i:s') 
+            : null;
+
+        $lote = isset($args['datos']->lote) ? $args['datos']->lote : null;
+
+        $condicion = $fecha_vence !== null 
+            ? "a.fecha_vence = '$fecha_vence'" 
+            : "a.fecha_vence IS NULL";
+
+        $condicion .= $lote !== null 
+            ? " AND a.lote = '$lote'" 
+            : " AND a.lote IS NULL";
+
+        $consulta = $this->db->table($this->table . ' a')
+            ->select("a.id")
+            ->where("a.pedido_enc_id", $args['datos']->pedido_enc_id)
+            ->where("a.presentacion_producto_id", $args['datos']->presentacion_producto_id)
+            ->where('a.unidad_medida_id', $args['datos']->unidad_medida_id)
+            ->where($condicion)
+            ->get();
+
+        $resultado = $consulta->getResult();
+
+        return $resultado[0]->id ?? null;
+    }
+
+    public function eliminarDetallePedido($id)
+    {
+        $this->db->table($this->table)
+            ->delete(['id' => $id]);
+
+        if ($this->db->affectedRows() > 0) {
+            return true;
+        } else {
+            $this->setMensaje("No se eliminó el detalle, por favor intente nuevamente.");
+            return false;
+        }
     }
 }
 

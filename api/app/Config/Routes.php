@@ -23,29 +23,32 @@ $routes->group('usuario', function($routes) {
 $routes->get('menubar', 'Menubar::index');
 $routes->get('menubar/buscar', 'Menubar::buscar');
 
-$routes->group('menu', ['namespace' => 'App\Controllers'], function($routes) {
+$routes->group('app/menu', ['namespace' => 'App\Controllers'], function($routes) {
     $routes->get('index', 'Menu::index');
     $routes->get('buscar', 'Menu::buscar');
 });
 
-$routes->get('catalogo', 'Catalogo::index');
-$routes->get('catalogo/ver_lista', 'Catalogo::ver_lista');
+$routes->get('app/catalogo', 'Catalogo::index');
+$routes->get('app/catalogo/ver_lista', 'Catalogo::ver_lista');
 
 
-$routes->group('pedido', ['namespace' => 'App\Controllers\pedido'], function($routes) {
-    $routes->get('detalle', 'Detalle::index');
-    $routes->get('detalle/buscar', 'Detalle::buscar');
-    $routes->post('detalle/guardar/(:segment)', 'Detalle::guardar/$1');
-    $routes->post('detalle/guardar', 'Detalle::guardar');
-    $routes->delete('detalle/eliminar_producto/(:segment)', 'Detalle::eliminar_producto/$1');
-    $routes->get('principal', 'Principal::index');
-    $routes->get('principal/buscar', 'Principal::buscar');
-    $routes->get('principal/get_datos', 'Principal::get_datos');
-    $routes->post('principal/guardar/(:any)', 'Principal::guardar/$1');
-    $routes->post('principal/guardar', 'Principal::guardar');
+$routes->group('app/pedido', ['namespace' => 'App\Controllers\pedido'], function($routes) {
+    $routes->get('Principal', 'Principal::index');
+    $routes->get('Principal/buscar', 'Principal::buscar');
+    $routes->get('Principal/get_datos', 'Principal::get_datos');
+    $routes->get('Principal/ObtenerStock', 'Principal::ObtenerStock');
+    $routes->post('Principal/guardar/(:segment)', 'Principal::guardar/$1');
+    $routes->post('Principal/finalizarPedido/(:segment)', 'Principal::finalizarPedido/$1');
+    $routes->get('Detalle', 'Detalle::index');
+    $routes->get('Detalle/buscar', 'Detalle::buscar');
+    $routes->post('Detalle/guardar/(:segment)', 'Detalle::guardar/$1');
+    $routes->post('Detalle/guardarDetalle', 'Detalle::guardarDetalle');
+    $routes->delete('Detalle/eliminar_producto/(:segment)', 'Detalle::eliminar_producto/$1');
+    $routes->delete('Detalle/eliminarDetalle/(:segment)', 'Detalle::eliminarDetalle/$1');
 });
 
-$routes->group('recepcion', ['namespace' => 'App\Controllers\recepcion'], function($routes) {
+
+$routes->group('app/recepcion', ['namespace' => 'App\Controllers\recepcion'], function($routes) {
     $routes->get('detalle', 'Detalle::index');
     $routes->get('detalle/buscar', 'Detalle::buscar');
     $routes->post('detalle/guardar/(:segment)', 'Detalle::guardar/$1');
@@ -60,7 +63,7 @@ $routes->group('recepcion', ['namespace' => 'App\Controllers\recepcion'], functi
     $routes->post('principal/recibir', 'Principal::recibir');
 });
 
-$routes->group('producto', ['namespace' => 'App\Controllers\producto'], function($routes) {
+$routes->group('app/producto', ['namespace' => 'App\Controllers\producto'], function($routes) {
     $routes->get('unidad_medida', 'Unidad_medida::index');
     $routes->get('unidad_medida/buscar', 'Unidad_medida::buscar');
     $routes->post('unidad_medida/guardar/(:segment)', 'Unidad_medida::guardar/$1');
@@ -109,7 +112,7 @@ $routes->group('producto', ['namespace' => 'App\Controllers\producto'], function
     $routes->post('clasificacion/guardar', 'Clasificacion::guardar');
 });
 
-$routes->group('orden', ['namespace' => 'App\Controllers\orden'], function($routes) {
+$routes->group('app/orden', ['namespace' => 'App\Controllers\orden'], function($routes) {
     $routes->get('ordencompra', 'OrdenCompra::index');
     $routes->get('ordencompra/buscar', 'OrdenCompra::buscar');
     $routes->post('ordencompra/guardar/(:segment)', 'OrdenCompra::guardar/$1');
@@ -261,7 +264,7 @@ $routes->group('app/mnt', ['namespace' => 'App\Controllers\mnt'], function($rout
 
 });
 
-$routes->group('bodega', ['namespace' => 'App\Controllers\bodega'], function($routes) {
+$routes->group('app/bodega', ['namespace' => 'App\Controllers\bodega'], function($routes) {
     $routes->get('area', 'Area::index');
     $routes->get('area/buscar', 'Area::buscar');
     $routes->post('area/guardar/(:segment)', 'Area::guardar/$1');
@@ -289,7 +292,7 @@ $routes->group('bodega', ['namespace' => 'App\Controllers\bodega'], function($ro
     $routes->post('ubicacion/guardar', 'Ubicacion::guardar');
 });
 
-$routes->group('despacho', ['namespace' => 'App\Controllers\despacho'], function($routes) {
+$routes->group('app/despacho', ['namespace' => 'App\Controllers\despacho'], function($routes) {
     $routes->get('detalle', 'Detalle::index');
     $routes->get('detalle/buscar', 'Detalle::buscar');
     $routes->post('detalle/guardar/(:segment)', 'Detalle::guardar/$1');
@@ -302,4 +305,11 @@ $routes->group('despacho', ['namespace' => 'App\Controllers\despacho'], function
     $routes->post('principal/guardar/(:segment)', 'Principal::guardar/$1');
     $routes->post('principal/despachar', 'Principal::despachar');
 });
+
+$routes->group('app/reserva', ['namespace' => 'App\Controllers\reserva'], function($routes) {
+    $routes->post('principal/guardar/(:any)', 'Principal::guardar/$1');
+    $routes->post('principal/guardar', 'Principal::guardar');
+    $routes->get('principal', 'Principal::index');
+});
+
 
