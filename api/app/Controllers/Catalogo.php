@@ -36,9 +36,11 @@ class Catalogo extends ResourceController
             $ar = elemento($args, $value, []);
 
             if (method_exists($this->catalogoModel, $tmp)) {
-                log_message('info','ver args catalogo before call '.$ar );
-                log_message('info','ver lista catalogo before call '.$tmp);
-                $ar  = json_decode($ar,true);
+                //log_message('info','ver args catalogo before call '.$ar );
+               // log_message('info','ver lista catalogo before call '.$tmp);
+               if (is_string($ar)) {
+                $ar = json_decode($ar, true);
+            }
                 $lista[$value] = $this->catalogoModel->$tmp($ar);
             } else {
                 $lista[$value] = "Método {$tmp} no encontrado en CatalogoModel";

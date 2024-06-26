@@ -33,12 +33,12 @@ $routes->get('catalogo/ver_lista', 'Catalogo::ver_lista');
 
 
 $routes->group('pedido', ['namespace' => 'App\Controllers\pedido'], function($routes) {
-    $routes->get('Principal', 'Principal::index');
-    $routes->get('Principal/buscar', 'Principal::buscar');
-    $routes->get('Principal/get_datos', 'Principal::get_datos');
-    $routes->get('Principal/ObtenerStock', 'Principal::ObtenerStock');
-    $routes->post('Principal/guardar/(:segment)', 'Principal::guardar/$1');
-    $routes->post('Principal/finalizarPedido/(:segment)', 'Principal::finalizarPedido/$1');
+    $routes->get('principal', 'principal::index');
+    $routes->get('principal/buscar', 'principal::buscar');
+    $routes->get('principal/get_datos', 'principal::get_datos');
+    $routes->get('principal/ObtenerStock', 'principal::ObtenerStock');
+    $routes->post('principal/guardar/(:segment)', 'principal::guardar/$1');
+    $routes->post('principal/finalizarPedido/(:segment)', 'principal::finalizarPedido/$1');
     $routes->get('Detalle', 'Detalle::index');
     $routes->get('Detalle/buscar', 'Detalle::buscar');
     $routes->post('Detalle/guardar/(:segment)', 'Detalle::guardar/$1');
