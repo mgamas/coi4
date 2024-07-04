@@ -40,6 +40,7 @@ class Menu extends ResourceController
     public function get_modulos()
     {
         $user = session()->get('usuario');
+        log_message('info', 'Usuario: '.json_encode($user));
         $modulos = $this->menu_model->buscar(['rol_id' => $user['id']]);
 
         if ($modulos) {
@@ -157,5 +158,14 @@ class Menu extends ResourceController
         }
 
         return $this->respond($data);
+    }
+    public function options()
+    {
+        $response = service('response');
+        $response->setHeader('Access-Control-Allow-Origin', '*');
+        $response->setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
+        $response->setHeader('Access-Control-Allow-Headers', '*');
+        $response->setHeader('Access-Control-Allow-Credentials', 'true');
+        return $response;
     }
 }

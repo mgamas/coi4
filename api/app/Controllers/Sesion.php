@@ -167,4 +167,14 @@ class Sesion extends ResourceController
     
             return $this->response->setJSON($data);
         }
+
+        public function options()
+    {
+        $response = service('response');
+        $response->setHeader('Access-Control-Allow-Origin', 'http://localhost:8081'); // Especifica el origen correcto
+        $response->setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
+        $response->setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, clave, usuario, X-Requested-With, x-xsrf-token');
+        $response->setHeader('Access-Control-Allow-Credentials', 'true');
+        return $response;
+    }
 }

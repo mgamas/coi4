@@ -10,7 +10,10 @@ $routes->get('/', 'Home::index');
 
 $routes->post('sesion/login', 'Sesion::login');
 $routes->post('sesion/logout', 'Sesion::logout');
+$routes->options('sesion/logout', 'Sesion::options'); 
 $routes->post('sesion/validar_token', 'Sesion::validar_token');
+$routes->options('sesion/validar_token', 'Sesion::options');
+$routes->options('sesion/login', 'Sesion::options');
 $routes->get('sesion', 'Sesion::index');
 
 $routes->group('usuario', function($routes) {
@@ -180,6 +183,7 @@ $routes->group('mnt', ['namespace' => 'App\Controllers\mnt'], function($routes) 
     $routes->get('menu', 'Menu::index');
     $routes->get('menu/buscar', 'Menu::buscar');
     $routes->get('menu/get_modulos', 'Menu::get_modulos');
+    $routes->options('menu/get_modulos', 'Menu::options');
     $routes->get('menu/get_opciones', 'Menu::get_opciones');
     $routes->post('menu/guardar/(:any)', 'Menu::guardar/$1');
     $routes->post('menu/guardar_opcion/(:any)', 'Menu::guardar_opcion/$1');

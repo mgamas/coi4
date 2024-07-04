@@ -212,7 +212,7 @@ class App extends BaseConfig
     */
     public $appVersion = '1.0.0';
 
-    public $allowedHostnames = [];
+    public $allowedHostnames = ['http://localhost:8081'];
 
     public $forceGlobalSecureRequests = false;
 
